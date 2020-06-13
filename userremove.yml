@@ -1,0 +1,42 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: create grp
+    group:
+        name: "{{item}}"
+        state: absent
+    loop:
+      - students
+      - bayside
+  - name: create zach user
+    user:
+        name: zach
+        comment: zach morris
+        shell: /bin/sh
+        group: cloud_user
+#here by adding group means u are going to add user's primary grp if u wont mention primary grp would be zach 
+        groups: students, bayside
+        append: yes
+# it should be yes if u r adding multiple grps
+        state: absent
+        remove: yes
+# remove will delete all the user and its home dir
+  - name: create kelly user
+    user:
+        name: kelly
+        comment: kelly kapowski
+        uid: 1050
+        groups: students, bayside
+        append: yes
+        state: absent
+        remove: yes
+  - name:
+    user:
+        name: slater
+        comment: ac slater
+        uid: 1051
+        groups: students, bayside
+        append: yes
+        state: absent
+        remove: yes
