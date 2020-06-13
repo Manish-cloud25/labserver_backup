@@ -1,0 +1,15 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+   - name: yum installation for at package
+     yum:
+      name: at
+      state: present
+   - name: scheduling of at job
+     at
+      command: cp /var/log/apache2/error_log /home/cloud_user/ansible/error
+      count: 2
+      units: hours
+      state: present
+     
