@@ -1,0 +1,15 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: archiving path exclue_path type dest
+    archive:
+      path:
+        - /tmp/testfile1
+        - /tmp/testfile2
+        - /tmp/testFile*
+      exclude_path:
+        - /tmp/testFile2
+      format: gz
+      dest: /home/cloud_user/archive.tgz
+        
