@@ -1,0 +1,15 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+    - name: start nd enable httpd service you can use systemd module as well which provide more functionality
+      systemd:
+          name: apache2
+          state: started
+          enabled: yes
+    - name: start and and enable firewalld service
+      systemd: 
+          name: firewalld
+          state: started
+          enabled: yes
+ 
