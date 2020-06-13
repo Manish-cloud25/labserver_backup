@@ -1,0 +1,28 @@
+--- 
+- hosts: web
+  become: yes
+  tasks:
+  - name:
+    firewalld:
+      zone: public
+      service: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+    loop:
+      - http
+      - https
+  - name:
+    firewalld:
+      port: 8080-8084/tcp
+      permanent: yes
+      immediate: yes
+      state: enabled 
+  - name:
+    firewalld:
+      rich_rule: rule family=ipv4 forward-port port=443 protocol=tcp to-port=8443
+      permanent: yes
+      immediate: yes
+      state: enabled
+
+

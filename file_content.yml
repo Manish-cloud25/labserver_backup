@@ -1,0 +1,17 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: creation of file
+    file:
+     path: /tmp/testfile1
+     state: touch
+  - name: add line in file with copy and create as well
+    copy:
+     content: added by copy module
+     dest: /tmp/testfile2
+  - name: add line with lineinfile
+    lineinfile: 
+     path: /tmp/testfile3
+     line: this line is added with lineinfile module
+     create: yes
