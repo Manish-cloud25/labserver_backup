@@ -1,0 +1,15 @@
+--- 
+- hosts: web
+  tasks:
+   - name: File creation
+     file:
+      path: /tmp/testfile
+      state: touch
+     register: var
+   - name: For printing the value of the Variabe
+     debug:
+      msg: this is the value of variable{{ var }}
+   - name: entering value in file
+     lineinfile:
+       path: /tmp/testfile
+       line: "This is user id {{ var.uid }} and group id {{ var.gid}}"

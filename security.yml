@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: 
+    selinux:
+        policy: targeted
+        state: permissive
+

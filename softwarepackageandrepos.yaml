@@ -1,0 +1,12 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: yum installation for multiple package
+    yum:
+     name: 
+      - apache2
+      - firewalld
+      - vim
+      - vsftpd
+     state: latest

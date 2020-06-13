@@ -1,0 +1,9 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: unpacking the archive either from control or remote server src,dest,remote_src yes(ctrl server) or no(remore server)
+    unarchive: 
+        src: /home/cloud_user/unarchive/multi/multifile.tgz
+        dest: /home/cloud_user/unarchive
+        remote_src: no

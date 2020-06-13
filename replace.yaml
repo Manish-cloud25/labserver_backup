@@ -1,0 +1,21 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+   - name: arrebhai first copy files where we will perform changes
+     copy: 
+      src: "{{ item }}"
+      dest: /tmp/
+     loop:
+      - /home/cloud_user/ansible/testFile1
+      - /home/cloud_user/ansible/testFile2
+   - name:
+     lineinfile:
+      path: /tmp/testFile1
+      regexp: "^added.$"
+      line: this is replaced by lineinfile module
+   - name:
+     replace:
+      path: /tmp/testFile2
+      regexp: ".*module$"
+      replace: "this line replace by replace module"

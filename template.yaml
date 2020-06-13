@@ -1,0 +1,16 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+   - name: push out into template generation information of remote server
+     template: 
+      src: /home/cloud_user/ansible/info.j2
+      dest: /tmp/info.txt
+   - name: Wait until the file /tmp/foo is present before continuing
+     wait_for:
+       path: /tmp/info.txt
+   - name:
+     copy: copying frpm remote server of its information
+       src: /tmp/info.txt
+       dest: /home/cloud_user/ansible/info.txt
+
