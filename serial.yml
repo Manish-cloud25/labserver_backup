@@ -1,0 +1,12 @@
+---
+- hosts: web
+  become: yes
+  serial: 
+   - 1
+   - 2
+   - 50%
+  tasks:
+   - name: creation of files
+     file:
+       path: /tmp/serialfile
+       state: touch  

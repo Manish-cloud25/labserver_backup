@@ -1,0 +1,15 @@
+---
+- hosts: web
+  become: yes
+  vars_files:
+   - /home/cloud_user/ansible/list_user.yml
+  tasks:
+   - name: create user 
+     user:
+      name: "{{ item }}"
+      state: present
+#use here with_items not loop
+     loop:
+      - "{{ student }}"
+      - "{{ employee }}"
+#Here is very interesting things found that if u use with_items it will work but if loop dont work.please search for this

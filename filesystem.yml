@@ -1,0 +1,17 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+   - name: this is filesystem module(creation of filesys like formating mkfs.ext4)
+     filesystem:
+       fstype: ext4
+       dev: path of volume
+       
+   - name: mounting of created filesystem
+     mount:
+      path: mount point
+      src: volume path
+      fstype: ext4
+      state: mount (also will enrty in fstab)| absent(remove entry from fstab)| present(only enrty in fstab)| unmount()
+      backup: yes(will take backup of fstab)
+
